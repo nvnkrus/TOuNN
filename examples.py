@@ -1,6 +1,6 @@
 import numpy as np
 
-example = 1
+example = 3
 nelx, nely = 60, 30
 #  ~~~~~~~~~~~~ Examples ~~~~~~~~~~~~~#
 if(example == 1): # tip cantilever

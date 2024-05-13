@@ -69,7 +69,7 @@ class StructuralFE:
         sK=((self.KE.flatten()[np.newaxis]).T*(self.Emin+(0.01 + density)**self.penal*(self.Emax-self.Emin))).flatten(order='F')
         K = coo_matrix((sK,(self.iK,self.jK)),shape=(self.ndof,self.ndof)).tocsc()
         K = self.deleterowcol(K,self.fixed,self.fixed).tocoo()
-        K = cvxopt.spmatrix(K.data,K.row.astype(np.int),K.col.astype(np.int))
+        K = cvxopt.spmatrix(K.data,K.row.astype(np.int64),K.col.astype(np.int64))
         B = cvxopt.matrix(self.f[self.free,0])
         cvxopt.cholmod.linsolve(K,B)
         self.u[self.free,0]=np.array(B)[:,0]
